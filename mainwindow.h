@@ -5,7 +5,6 @@
 #include <QtWidgets>
 #include "painter.h"
 
-extern QString pwd;
 extern const int canvas_width;
 extern const int canvas_height;
 extern const int btn_size;
