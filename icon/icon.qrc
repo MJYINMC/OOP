@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/myImage"/>
+    <qresource prefix="/">
+        <file>add_width.png</file>
+        <file>and2.png</file>
+        <file>and3.png</file>
+        <file>and4.png</file>
+        <file>black.png</file>
+        <file>blue.png</file>
+        <file>del.png</file>
+        <file>dot.png</file>
+        <file>free_line.png</file>
+        <file>h_line.png</file>
+        <file>icon.qrc</file>
+        <file>inv.png</file>
+        <file>minus_width.png</file>
+        <file>new_file.png</file>
+        <file>open_file.png</file>
+        <file>or2.png</file>
+        <file>or3.png</file>
+        <file>or4.png</file>
+        <file>red.png</file>
+        <file>save.png</file>
+        <file>save_as.png</file>
+        <file>v_line.png</file>
+        <file>window.png</file>
+        <file>xor.png</file>
+        <file>blank.png</file>
+    </qresource>
+</RCC>
