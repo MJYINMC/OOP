@@ -4,6 +4,9 @@
 #include "painter.h"
 #include "mainwindow.h"
 
+#define ITEM_WIDTH 100
+#define ITEM_HEIGHT 50
+
 PaintWidget::PaintWidget(QWidget *parent) : QLabel (parent)
 {
     drawing = false;
@@ -85,43 +88,43 @@ void PaintWidget::paint(QImage &CurrImg)
     switch (drawtype) {
     case 1:
         //draw and2
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/and2.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/and2.png"));
         break;
     case 2:
         //draw or2
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/or2.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/or2.png"));
         break;
     case 3:
         //draw and3
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/and3.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/and3.png"));
         break;
     case 4:
         //draw or3
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/or3.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/or3.png"));
         break;
     case 5:
         //draw and4
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/and4.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/and4.png"));
         break;
     case 6:
         //draw or4
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/or4.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/or4.png"));
         break;
     case 7:
         //draw xor
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/xor.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/xor.png"));
         break;
     case 8:
         //draw inv
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/inv.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/inv.png"));
         break;
     case 9:
         //draw h_line
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/h_line.png"));
+        qpainter.drawLine(startPoint.x(),startPoint.y(),endPoint.x(),startPoint.y());
         break;
     case 10:
         //draw v_line
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/v_line.png"));
+        qpainter.drawLine(startPoint.x(),startPoint.y(),startPoint.x(),endPoint.y());
         break;
     case 11:
         //draw free_line
@@ -129,12 +132,13 @@ void PaintWidget::paint(QImage &CurrImg)
         break;
     case 12:
         //draw dot
-        qpainter.drawPixmap(0,0,50,30,QPixmap(":/dot.png"));
+        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/dot.png"));
         break;
     case 13:
         //draw blank(to clear)
         qpainter.drawPixmap(0,0,canvas_width, canvas_height,QPixmap(":/blank.png"));
         break;
     }
+    qpainter.save();
     update();
 }

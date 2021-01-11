@@ -10,7 +10,7 @@ void MainWindow::_NewFile()
 void MainWindow::_OpenFile()
 {
     /* 选择一个图片路径，打开这个图片，以这时候的路径为当前路径。显示这个图片。 */
-    QString path = QFileDialog::getOpenFileName(this, "选择电路原理图", ".", "schemetic(*.jpg, *.png, *.bmp)");
+    QString path = QFileDialog::getOpenFileName(this, "选择电路原理图", ".", "schemetic(*.jpg *.png *.bmp)");
     if (!path.isEmpty()){
         QImage *open_file = new QImage();
         if (!open_file->load(path)){
@@ -27,7 +27,7 @@ void MainWindow::_SaveFile()
 {
     /* 如果之前没有经过open操作，当前文件路径是空的，需要选择一个路径保存。保存的核心操作是自带的.save() */
     if (path_of_curr_file.isEmpty()){
-        QString path = QFileDialog::getSaveFileName(this, "保存电路原理图", ".", "schemetic(*.jpg, *.png, *.bmp)");
+        QString path = QFileDialog::getSaveFileName(this, "保存电路原理图", ".", "schemetic(*.jpg *.png *.bmp)");
         if (!path.isEmpty())
             path_of_curr_file = path;
     }
@@ -36,7 +36,7 @@ void MainWindow::_SaveFile()
 }
 void MainWindow::_SaveAsFile()
 {
-    QString path = QFileDialog::getSaveFileName(this, "另存为电路原理图", ".", "schemetic(*.jpg, *.png, *.bmp)");
+    QString path = QFileDialog::getSaveFileName(this, "另存为电路原理图", ".", "schemetic(*.jpg *.png *.bmp)");
     if (!path.isEmpty())
         path_of_curr_file = path;
     QImage save_file = painter->getImage();
