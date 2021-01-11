@@ -85,6 +85,9 @@ void MainWindow::designLibSelect(int id)
     case 13:
         painter->setShape(13);
         break;
+    case 14:
+        painter->setShape(14);
+        break;
     }
 }
 void MainWindow::add_pen_width()

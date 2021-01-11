@@ -27,5 +27,6 @@
         <file>v_line.png</file>
         <file>window.png</file>
         <file>xor.png</file>
+        <file>node.png</file>
     </qresource>
 </RCC>
