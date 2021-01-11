@@ -134,7 +134,7 @@ void PaintWidget::paint(QImage &CurrImg)
         break;
     case 12:
         //draw dot
-        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/node.png"));
+        qpainter.drawPixmap(endPoint.x()-49,endPoint.y()-22,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/node.png"));
         break;
     case 13:
         //erase

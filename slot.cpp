@@ -42,6 +42,10 @@ void MainWindow::_SaveAsFile()
     QImage save_file = painter->getImage();
     save_file.save(path_of_curr_file);
 }
+void MainWindow::_ConnectUs()
+{
+    QMessageBox::information(this,"Email: ","XXXXXXXX@XXXX.XXX");
+}
 
 void MainWindow::designLibSelect(int id)
 {

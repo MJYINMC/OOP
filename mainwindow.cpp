@@ -14,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon(":/window.png"));
     resize(1280, 720);//设置窗口大小为1280*720
 
+
+//    //About Menu
+//    aboutMenu = menuBar()->addMenu(tr("关于"));
+
     /* 建立并链接菜单 */
         /* 建立菜单栏 */
     menubar = new QMenuBar(this);//建立一个以主窗口为parent的menubar
@@ -45,9 +49,16 @@ MainWindow::MainWindow(QWidget *parent)
     save_file->setStatusTip("保存电路原理图");
     save_as_file->setStatusTip("另存为电路原理图");
 
+    QMenu *menu_about = menuBar()->addMenu("帮助");//在菜单栏上添加“关于”菜单
+    QAction *connect_us = new QAction("联系我们",this);
+    menu_about->addAction(connect_us);
+    connect(connect_us, SIGNAL(triggered()), this, SLOT(_ConnectUs()));
+
     /* 建立并链接状态栏 */
     statusbar = new QStatusBar(this);//建立一个以主窗口为parent的statusbar
     this->setStatusBar(statusbar);//设置窗口的状态栏为刚创建的statusbar
+
+
 
     /* 创建并配置画布停靠窗 */
         /* 创建并设置画布停靠窗 */
