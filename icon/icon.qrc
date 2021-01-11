@@ -1,14 +1,16 @@
 <RCC>
-    <qresource prefix="/myImage"/>
     <qresource prefix="/">
         <file>add_width.png</file>
         <file>and2.png</file>
         <file>and3.png</file>
         <file>and4.png</file>
         <file>black.png</file>
+        <file>blank.png</file>
+        <file>blank_all.png</file>
         <file>blue.png</file>
-        <file>del.png</file>
+        <file>delete.png</file>
         <file>dot.png</file>
+        <file>eraser.png</file>
         <file>free_line.png</file>
         <file>h_line.png</file>
         <file>icon.qrc</file>
@@ -25,6 +27,5 @@
         <file>v_line.png</file>
         <file>window.png</file>
         <file>xor.png</file>
-        <file>blank.png</file>
     </qresource>
 </RCC>

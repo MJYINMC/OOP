@@ -75,15 +75,17 @@ void PaintWidget::mouseReleaseEvent(QMouseEvent *)
 {
     drawing = false;
     paint(image);
+
 }
 void PaintWidget::paint(QImage &CurrImg)
 {
     QPainter qpainter(&CurrImg);
+    QPainter eraser(&image);
     QPen pen;
     pen.setWidth(penWidth);
     pen.setColor(penColor);
     qpainter.setPen(pen);
-    qpainter.setRenderHint(QPainter::Antialiasing, true); //抗锯齿？
+    qpainter.setRenderHint(QPainter::Antialiasing, true); //抗锯齿
 
     switch (drawtype) {
     case 1:
@@ -132,11 +134,15 @@ void PaintWidget::paint(QImage &CurrImg)
         break;
     case 12:
         //draw dot
-        qpainter.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_HEIGHT,QPixmap(":/dot.png"));
+        qpainter.drawPoint(endPoint);
         break;
     case 13:
-        //draw blank(to clear)
-        qpainter.drawPixmap(0,0,canvas_width, canvas_height,QPixmap(":/blank.png"));
+        //erase
+        eraser.drawPixmap(endPoint.x()-30,endPoint.y()-15,ITEM_WIDTH,ITEM_WIDTH,QPixmap(":/blank.png"));
+        break;
+    case 14:
+        //clear all
+        qpainter.drawPixmap(0,0,canvas_width*2, canvas_height*2,QPixmap(":/blank_all.png"));
         break;
     }
     qpainter.save();

@@ -6,6 +6,7 @@ const int canvas_width = 1100;
 const int canvas_height = 600;
 const int btn_size = 50;
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -91,7 +92,8 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *v_line_btn = new QPushButton(QIcon(":/v_line.png"), "", this);
     QPushButton *free_line_btn = new QPushButton(QIcon(":/free_line.png"), "", this);
     QPushButton *dot_btn = new QPushButton(QIcon(":/dot.png"), "", this);
-    QPushButton *del_btn = new QPushButton(QIcon(":/del.png"), "", this);
+    QPushButton *erase_btn = new QPushButton(QIcon(":/eraser.png"), "", this);
+    QPushButton *delete_btn = new QPushButton(QIcon(":/delete.png"), "", this);
     and2_btn->setFixedSize(btn_size, btn_size);
     or2_btn->setFixedSize(btn_size, btn_size);
     and3_btn->setFixedSize(btn_size, btn_size);
@@ -104,7 +106,8 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setFixedSize(btn_size, btn_size);
     free_line_btn->setFixedSize(btn_size, btn_size);
     dot_btn->setFixedSize(btn_size, btn_size);
-    del_btn->setFixedSize(btn_size, btn_size);
+    erase_btn->setFixedSize(btn_size, btn_size);
+    delete_btn->setFixedSize(btn_size, btn_size);
     and2_btn->setToolTip("二输入与门");
     or2_btn->setToolTip("二输入或门");
     and3_btn->setToolTip("三输入与门");
@@ -117,7 +120,7 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setToolTip("垂直连接线");
     free_line_btn->setToolTip("自由连接线");
     dot_btn->setToolTip("电路连接点");
-    del_btn->setToolTip("区域清除");
+    erase_btn->setToolTip("区域清除");
     and2_btn->setStatusTip("绘制二输入与门");
     or2_btn->setStatusTip("绘制二输入或门");
     and3_btn->setStatusTip("绘制三输入与门");
@@ -130,7 +133,8 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setStatusTip("绘制垂直连接线");
     free_line_btn->setStatusTip("绘制自由连接线");
     dot_btn->setStatusTip("绘制电路连接点");
-    del_btn->setStatusTip("清除指定区域");
+    erase_btn->setStatusTip("清除指定区域");
+    delete_btn->setStatusTip("清除整张画布");
     //and2_btn->setObjectName("custombutton");???
         /* 将按钮排列在停靠窗中 */
     QGridLayout *toolbox_layout = new QGridLayout();
@@ -147,7 +151,8 @@ MainWindow::MainWindow(QWidget *parent)
     toolbox_layout->addWidget(v_line_btn, 4, 1);
     toolbox_layout->addWidget(free_line_btn, 5, 0);
     toolbox_layout->addWidget(dot_btn, 5, 1);
-    toolbox_layout->addWidget(del_btn, 6, 0);
+    toolbox_layout->addWidget(erase_btn, 6, 0);
+    toolbox_layout->addWidget(delete_btn, 6, 1);
     QWidget *toolWidget = new QWidget(toolboxDock);
     toolWidget->setLayout(toolbox_layout);
     toolboxDock->setWidget(toolWidget);
@@ -165,7 +170,8 @@ MainWindow::MainWindow(QWidget *parent)
     designLib->addButton(v_line_btn, 10);
     designLib->addButton(free_line_btn, 11);
     designLib->addButton(dot_btn, 12);
-    designLib->addButton(del_btn, 13);
+    designLib->addButton(erase_btn, 13);
+    designLib->addButton(delete_btn, 14);
     connect(designLib, SIGNAL(buttonClicked(int)), this, SLOT(designLibSelect(int)));
 
     /* 创建并配置参数停靠窗 */
@@ -177,6 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *red_btn = new QPushButton(QIcon(":/red.png"), "", this);
     QPushButton *blue_btn = new QPushButton(QIcon(":/blue.png"), "", this);
     QPushButton *black_btn = new QPushButton(QIcon(":/black.png"), "", this);
+
     add_width_btn->resize(btn_size, btn_size);
     minus_width_btn->resize(btn_size, btn_size);
     red_btn->resize(btn_size, btn_size);
