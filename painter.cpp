@@ -23,8 +23,10 @@ void PaintWidget::setImage(QImage img)  //设置画布
 }
 QImage PaintWidget::getImage()  //获得画布
 {
+    QImage non_image;
     if (!image.isNull())
         return image;
+    return non_image;
 }
 void PaintWidget::setPenColor(QColor color) //设置笔的颜色
 {
