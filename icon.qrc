@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icon/add_width.png</file>
+        <file>icon/and2.png</file>
+        <file>icon/and3.png</file>
+        <file>icon/and4.png</file>
+        <file>icon/black.png</file>
+        <file>icon/blank.png</file>
+        <file>icon/blank_all.png</file>
+        <file>icon/blue.png</file>
+        <file>icon/delete.png</file>
+        <file>icon/dot.png</file>
+        <file>icon/eraser.png</file>
+        <file>icon/free_line.png</file>
+        <file>icon/h_line.png</file>
+        <file>icon/icon.qrc</file>
+        <file>icon/inv.png</file>
+        <file>icon/minus_width.png</file>
+        <file>icon/new_file.png</file>
+        <file>icon/open_file.png</file>
+        <file>icon/or2.png</file>
+        <file>icon/or3.png</file>
+        <file>icon/or4.png</file>
+        <file>icon/red.png</file>
+        <file>icon/save.png</file>
+        <file>icon/save_as.png</file>
+        <file>icon/v_line.png</file>
+        <file>icon/window.png</file>
+        <file>icon/xor.png</file>
+        <file>counter.h</file>
+        <file>main.cpp</file>
+        <file>mainwindow.cpp</file>
+        <file>mainwindow.h</file>
+        <file>painter.cpp</file>
+        <file>painter.h</file>
+        <file>slot.cpp</file>
+    </qresource>
+</RCC>

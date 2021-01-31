@@ -2,17 +2,21 @@
 #include "mainwindow.h"
 #include "painter.h"
 
-QString pwd = "G:\\QtProjects\\CircuitDesign\\";
 const int canvas_width = 1100;
 const int canvas_height = 600;
 const int btn_size = 50;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setWindowTitle("逻辑电路设计");
-    setWindowIcon(QIcon(pwd + "icon\\window.png"));
+    setWindowIcon(QIcon(":/window.png"));
     resize(1280, 720);//设置窗口大小为1280*720
+
+
+//    //About Menu
+//    aboutMenu = menuBar()->addMenu(tr("关于"));
 
     /* 建立并链接菜单 */
         /* 建立菜单栏 */
@@ -20,10 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->setMenuBar(menubar);//设置窗口的菜单栏为刚创建的menubar
     QMenu *menu_file = menuBar()->addMenu("文件");//在菜单栏上添加“文件”菜单
         /* 建立动作 */
-    QAction *new_file = new QAction(QIcon(pwd + "icon\\new_file.png"), "新建", this);
-    QAction *open_file = new QAction(QIcon(pwd + "icon\\open_file.png"), "打开", this);
-    QAction *save_file = new QAction(QIcon(pwd + "icon\\save.png"), "保存", this);
-    QAction *save_as_file = new QAction(QIcon(pwd + "icon\\save_as.png"), "另存为", this);
+    QAction *new_file = new QAction(QIcon(":/new_file.png"), "新建", this);
+    QAction *open_file = new QAction(QIcon(":/open_file.png"), "打开", this);
+    QAction *save_file = new QAction(QIcon(":/save.png"), "保存", this);
+    QAction *save_as_file = new QAction(QIcon(":/save_as.png"), "另存为", this);
         /* 设置动作快捷键 */
     new_file->setShortcuts(QKeySequence::New);
     open_file->setShortcuts(QKeySequence::Open);
@@ -45,9 +49,16 @@ MainWindow::MainWindow(QWidget *parent)
     save_file->setStatusTip("保存电路原理图");
     save_as_file->setStatusTip("另存为电路原理图");
 
+    QMenu *menu_about = menuBar()->addMenu("帮助");//在菜单栏上添加“关于”菜单
+    QAction *connect_us = new QAction("联系我们",this);
+    menu_about->addAction(connect_us);
+    connect(connect_us, SIGNAL(triggered()), this, SLOT(_ConnectUs()));
+
     /* 建立并链接状态栏 */
     statusbar = new QStatusBar(this);//建立一个以主窗口为parent的statusbar
     this->setStatusBar(statusbar);//设置窗口的状态栏为刚创建的statusbar
+
+
 
     /* 创建并配置画布停靠窗 */
         /* 创建并设置画布停靠窗 */
@@ -80,19 +91,20 @@ MainWindow::MainWindow(QWidget *parent)
     addDockWidget(Qt::LeftDockWidgetArea, toolboxDock);//停靠窗配置在左侧
     splitDockWidget(toolboxDock, canvasDock, Qt::Horizontal);//?
         /* 创建按钮 */
-    QPushButton *and2_btn = new QPushButton(QIcon(pwd + "icon\\and2.png"), "", this);//为什么parent是mainwindow?
-    QPushButton *or2_btn = new QPushButton(QIcon(pwd + "icon\\or2.png"), "", this);
-    QPushButton *and3_btn = new QPushButton(QIcon(pwd + "icon\\and3.png"), "", this);
-    QPushButton *or3_btn = new QPushButton(QIcon(pwd + "icon\\or3.png"), "", this);
-    QPushButton *and4_btn = new QPushButton(QIcon(pwd + "icon\\and4.png"), "", this);
-    QPushButton *or4_btn = new QPushButton(QIcon(pwd + "icon\\or4.png"), "", this);
-    QPushButton *xor_btn = new QPushButton(QIcon(pwd + "icon\\xor.png"), "", this);
-    QPushButton *inv_btn = new QPushButton(QIcon(pwd + "icon\\inv.png"), "", this);
-    QPushButton *h_line_btn = new QPushButton(QIcon(pwd + "icon\\h_line.png"), "", this);
-    QPushButton *v_line_btn = new QPushButton(QIcon(pwd + "icon\\v_line.png"), "", this);
-    QPushButton *free_line_btn = new QPushButton(QIcon(pwd + "icon\\free_line.png"), "", this);
-    QPushButton *dot_btn = new QPushButton(QIcon(pwd + "icon\\dot.png"), "", this);
-    QPushButton *del_btn = new QPushButton(QIcon(pwd + "icon\\del.png"), "", this);
+    QPushButton *and2_btn = new QPushButton(QIcon(":/and2.png"), "", this);//为什么parent是mainwindow?
+    QPushButton *or2_btn = new QPushButton(QIcon(":/or2.png"), "", this);
+    QPushButton *and3_btn = new QPushButton(QIcon(":/and3.png"), "", this);
+    QPushButton *or3_btn = new QPushButton(QIcon(":/or3.png"), "", this);
+    QPushButton *and4_btn = new QPushButton(QIcon(":/and4.png"), "", this);
+    QPushButton *or4_btn = new QPushButton(QIcon(":/or4.png"), "", this);
+    QPushButton *xor_btn = new QPushButton(QIcon(":/xor.png"), "", this);
+    QPushButton *inv_btn = new QPushButton(QIcon(":/inv.png"), "", this);
+    QPushButton *h_line_btn = new QPushButton(QIcon(":/h_line.png"), "", this);
+    QPushButton *v_line_btn = new QPushButton(QIcon(":/v_line.png"), "", this);
+    QPushButton *free_line_btn = new QPushButton(QIcon(":/free_line.png"), "", this);
+    QPushButton *dot_btn = new QPushButton(QIcon(":/dot.png"), "", this);
+    QPushButton *erase_btn = new QPushButton(QIcon(":/eraser.png"), "", this);
+    QPushButton *delete_btn = new QPushButton(QIcon(":/delete.png"), "", this);
     and2_btn->setFixedSize(btn_size, btn_size);
     or2_btn->setFixedSize(btn_size, btn_size);
     and3_btn->setFixedSize(btn_size, btn_size);
@@ -105,7 +117,8 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setFixedSize(btn_size, btn_size);
     free_line_btn->setFixedSize(btn_size, btn_size);
     dot_btn->setFixedSize(btn_size, btn_size);
-    del_btn->setFixedSize(btn_size, btn_size);
+    erase_btn->setFixedSize(btn_size, btn_size);
+    delete_btn->setFixedSize(btn_size, btn_size);
     and2_btn->setToolTip("二输入与门");
     or2_btn->setToolTip("二输入或门");
     and3_btn->setToolTip("三输入与门");
@@ -118,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setToolTip("垂直连接线");
     free_line_btn->setToolTip("自由连接线");
     dot_btn->setToolTip("电路连接点");
-    del_btn->setToolTip("区域清除");
+    erase_btn->setToolTip("区域清除");
     and2_btn->setStatusTip("绘制二输入与门");
     or2_btn->setStatusTip("绘制二输入或门");
     and3_btn->setStatusTip("绘制三输入与门");
@@ -131,7 +144,8 @@ MainWindow::MainWindow(QWidget *parent)
     v_line_btn->setStatusTip("绘制垂直连接线");
     free_line_btn->setStatusTip("绘制自由连接线");
     dot_btn->setStatusTip("绘制电路连接点");
-    del_btn->setStatusTip("清除指定区域");
+    erase_btn->setStatusTip("清除指定区域");
+    delete_btn->setStatusTip("清除整张画布");
     //and2_btn->setObjectName("custombutton");???
         /* 将按钮排列在停靠窗中 */
     QGridLayout *toolbox_layout = new QGridLayout();
@@ -148,7 +162,8 @@ MainWindow::MainWindow(QWidget *parent)
     toolbox_layout->addWidget(v_line_btn, 4, 1);
     toolbox_layout->addWidget(free_line_btn, 5, 0);
     toolbox_layout->addWidget(dot_btn, 5, 1);
-    toolbox_layout->addWidget(del_btn, 6, 0);
+    toolbox_layout->addWidget(erase_btn, 6, 0);
+    toolbox_layout->addWidget(delete_btn, 6, 1);
     QWidget *toolWidget = new QWidget(toolboxDock);
     toolWidget->setLayout(toolbox_layout);
     toolboxDock->setWidget(toolWidget);
@@ -166,18 +181,20 @@ MainWindow::MainWindow(QWidget *parent)
     designLib->addButton(v_line_btn, 10);
     designLib->addButton(free_line_btn, 11);
     designLib->addButton(dot_btn, 12);
-    designLib->addButton(del_btn, 13);
+    designLib->addButton(erase_btn, 13);
+    designLib->addButton(delete_btn, 14);
     connect(designLib, SIGNAL(buttonClicked(int)), this, SLOT(designLibSelect(int)));
 
     /* 创建并配置参数停靠窗 */
     penArgDock = new QToolBar();
     penArgDock = addToolBar("笔尖参数设置");//???
     penArgDock->setMovable(true);
-    QPushButton *add_width_btn = new QPushButton(QIcon(pwd + "icon\\add_width.png"), "", this);
-    QPushButton *minus_width_btn = new QPushButton(QIcon(pwd + "icon\\minus_width.png"), "", this);
-    QPushButton *red_btn = new QPushButton(QIcon(pwd + "icon\\red.png"), "", this);
-    QPushButton *blue_btn = new QPushButton(QIcon(pwd + "icon\\blue.png"), "", this);
-    QPushButton *black_btn = new QPushButton(QIcon(pwd + "icon\\black.png"), "", this);
+    QPushButton *add_width_btn = new QPushButton(QIcon(":/add_width.png"), "", this);
+    QPushButton *minus_width_btn = new QPushButton(QIcon(":/minus_width.png"), "", this);
+    QPushButton *red_btn = new QPushButton(QIcon(":/red.png"), "", this);
+    QPushButton *blue_btn = new QPushButton(QIcon(":/blue.png"), "", this);
+    QPushButton *black_btn = new QPushButton(QIcon(":/black.png"), "", this);
+
     add_width_btn->resize(btn_size, btn_size);
     minus_width_btn->resize(btn_size, btn_size);
     red_btn->resize(btn_size, btn_size);

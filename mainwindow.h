@@ -5,7 +5,6 @@
 #include <QtWidgets>
 #include "painter.h"
 
-extern QString pwd;
 extern const int canvas_width;
 extern const int canvas_height;
 extern const int btn_size;
@@ -26,6 +25,9 @@ private:
     QButtonGroup *penSizeChg;//修改笔尖尺寸
 
     QString path_of_curr_file;
+    //Statues
+    QLabel *tempStatus;
+    QLabel *permStatus;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -36,6 +38,7 @@ private slots:
     void _OpenFile();
     void _SaveFile();
     void _SaveAsFile();
+    void _ConnectUs();
     void designLibSelect(int id);
     void add_pen_width();
     void minus_pen_width();
